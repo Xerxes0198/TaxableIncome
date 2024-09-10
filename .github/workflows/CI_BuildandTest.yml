@@ -31,12 +31,12 @@ jobs:
 
     - name: Restore
       run: dotnet restore
-      working-directory: SOURCE_FOLDER
+      working-directory: $SOURCE_FOLDER
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: SOURCE_FOLDER
+      working-directory: $SOURCE_FOLDER
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: SOURCE_FOLDER
+      working-directory: $SOURCE_FOLDER
