@@ -3,8 +3,7 @@
 
 name: Build and Test
 
-env:
-  SOURCE_FOLDER: "src/TaxableIncome"
+
 
 on:
   push:
@@ -17,7 +16,11 @@ on:
   workflow_dispatch:
 
 jobs:
+
   build:
+
+    env:
+      SOURCE_FOLDER: "src/TaxableIncome"
 
     runs-on: ubuntu-latest
 
@@ -31,12 +34,12 @@ jobs:
 
     - name: Restore
       run: dotnet restore
-      working-directory: $SOURCE_FOLDER
+      working-directory: ${{env.SOURCE_FOLDER}}
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: $SOURCE_FOLDER
+      working-directory: ${{env.SOURCE_FOLDER}}
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: $SOURCE_FOLDER
+      working-directory: ${{env.SOURCE_FOLDER}}
