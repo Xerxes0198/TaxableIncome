@@ -3,6 +3,8 @@
 
 name: Build and Test
 
+
+
 on:
   push:
     branches:
@@ -14,7 +16,11 @@ on:
   workflow_dispatch:
 
 jobs:
+
   build:
+
+    env:
+      SOURCE_FOLDER: "src/TaxableIncome"
 
     runs-on: ubuntu-latest
 
@@ -25,12 +31,15 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    
-    - name: Restore dependencies
-      run: dotnet restore *.sln
+
+    - name: Restore
+      run: dotnet restore
+      working-directory: ${{env.SOURCE_FOLDER}}
 
     - name: Build
-      run: dotnet build --no-restore *.sln
+      run: dotnet build --no-restore
+      working-directory: ${{env.SOURCE_FOLDER}}
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: ${{env.SOURCE_FOLDER}}
