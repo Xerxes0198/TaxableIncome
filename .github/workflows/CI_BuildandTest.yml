@@ -21,19 +21,18 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-
-#    - name: Setup .NET
-#      uses: actions/setup-dotnet@v4
-#      with:
-#        dotnet-version: 8.0.x
-    
-    - name: Restore dependencies
-      uses: codebeltnet/dotnet-restore@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
-        projects: '**/*.csproj'
+        dotnet-version: 8.0.x
+
+    - name: Restore
+      run: dotnet restore
+      working-directory: src/TaxableIncome
 
     - name: Build
-      run: dotnet build --no-restore *.sln
+      run: dotnet build --no-restore
+      working-directory: src/TaxableIncome
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
