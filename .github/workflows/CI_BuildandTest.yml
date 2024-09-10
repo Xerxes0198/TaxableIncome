@@ -3,6 +3,9 @@
 
 name: Build and Test
 
+env:
+  SOURCE_FOLDER: "src/TaxableIncome"
+
 on:
   push:
     branches:
@@ -28,11 +31,12 @@ jobs:
 
     - name: Restore
       run: dotnet restore
-      working-directory: src/TaxableIncome
+      working-directory: SOURCE_FOLDER
 
     - name: Build
       run: dotnet build --no-restore
-      working-directory: src/TaxableIncome
+      working-directory: SOURCE_FOLDER
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: SOURCE_FOLDER
