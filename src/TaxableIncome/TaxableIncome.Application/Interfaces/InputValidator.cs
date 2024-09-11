@@ -1,9 +1,10 @@
-// <copyright file="InputValidation.cs" company="PlaceholderCompany">
+// <copyright file="InputValidator.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace TaxableIncome.Application.Interfaces;
 
+using FinancialYearModels;
 using System.Text.RegularExpressions;
 using Constants;
 using System.Globalization;
@@ -11,7 +12,7 @@ using System.Globalization;
 /// <summary>
 /// This class is used to handle all input validation.
 /// </summary>
-public class InputValidation
+public class InputValidator
 {
     /// <summary>
     /// Take in a string and return the float value without any formatting.
@@ -37,5 +38,15 @@ public class InputValidation
         }
 
         return decimal.Parse(filteredString, CultureInfo.CurrentCulture);
+    }
+
+    /// <summary>
+    /// Takes in a <see cref="FinancialYearBaseInputModel"/> and validates all given user inputs against its defined type.
+    /// </summary>
+    /// <param name="model">The input model to validate.</param>
+    /// <returns>Whether the model is valid.</returns>
+    public bool ValidateInputModel(FinancialYearBaseInputModel model)
+    {
+        return false;
     }
 }

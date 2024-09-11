@@ -16,11 +16,11 @@ public abstract class BaseUnitTests
     /// </summary>
     protected BaseUnitTests()
     {
-        this.InputValidation = new InputValidation();
+        this.InputValidator = new InputValidator();
     }
 
     /// <summary>
     /// Gets the instance of the input validation class for these tests.
     /// </summary>
-    public InputValidation InputValidation { get; }
+    public InputValidator InputValidator { get; }
 }

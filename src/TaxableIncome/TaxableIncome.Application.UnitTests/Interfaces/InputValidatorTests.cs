@@ -7,9 +7,9 @@ namespace TaxableIncome.Application.UnitTests.Interfaces;
 using TaxableIncome.Application.Interfaces;
 
 /// <summary>
-/// Tests for the <see cref="InputValidation"/> class.
+/// Tests for the <see cref="InputValidator"/> class.
 /// </summary>
-public class InputValidationTests : BaseUnitTests
+public class InputValidatorTests : BaseUnitTests
 {
     /// <summary>
     /// Ensures that any instance of a value provided as a string is properly converted into the expected float.
@@ -26,7 +26,7 @@ public class InputValidationTests : BaseUnitTests
     [InlineData(12.55, "Monies $$12.55cents")]
     public void InputValidationTest_StrippedCurrencyString_ReturnsExpectedFloat(decimal expectedValue, string currencyString)
     {
-        var strippedValue = this.InputValidation.StrippedCurrencyString(currencyString);
+        var strippedValue = this.InputValidator.StrippedCurrencyString(currencyString);
         Assert.Equal(expectedValue, strippedValue);
     }
 
@@ -36,6 +36,6 @@ public class InputValidationTests : BaseUnitTests
     [Fact]
     public void InputValidationTest_StrippedCurrencyString_ThrowsException()
     {
-        Assert.Throws<FormatException>(() => this.InputValidation.StrippedCurrencyString("dgdbcvbxcfg"));
+        Assert.Throws<FormatException>(() => this.InputValidator.StrippedCurrencyString("dgdbcvbxcfg"));
     }
 }
