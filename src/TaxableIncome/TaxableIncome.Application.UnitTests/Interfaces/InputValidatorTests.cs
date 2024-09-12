@@ -1,4 +1,4 @@
-// <copyright file="InputValidationTests.cs" company="PlaceholderCompany">
+// <copyright file="InputValidatorTests.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 

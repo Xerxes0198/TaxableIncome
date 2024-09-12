@@ -21,6 +21,8 @@ All of the components in the Taxable Income solution have been designed with exp
 - Add additional financial years
 The orchestrator can be expanded to perform calculations from any financial year with known values, for instance: retrospectively calculating taxable incomes for previuos years. It can also lean on the input validator and calculations command to validate and calculate specific rules depending on the desired year.
 
+- Custom input types for the pay frequency and income fields. (Make them more tolerant to strange inputs.)
+
 - Inpupt Collection Expansion
 Depending on the specific needs per year, the orchestrator can request additional - or fewer - inputs from the input collection, like number of dependents.
 

@@ -13,4 +13,14 @@ public static class InputConstants
     /// This is how many decimal points we want a user to define in their input.
     /// </summary>
     public const int AllowedDecimalPoints = 1;
+
+    /// <summary>
+    /// This is the income message prompt presented to the user.
+    /// </summary>
+    public static readonly string IncomeInputMessage = "Please enter your salary package amount: ";
+
+    /// <summary>
+    /// This is the pay cycle message prompt presented to the user.
+    /// </summary>
+    public static readonly string PayCycleInputMessage = "Please Enter your pay frequency (W for weekly, F for fortnightly, M for monthly): ";
 }

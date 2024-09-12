@@ -37,7 +37,26 @@ public class InputValidator
             filteredString = filteredString.Substring(0, indexOfSecondDecimal);
         }
 
-        return decimal.Parse(filteredString, CultureInfo.CurrentCulture);
+        try
+        {
+            return decimal.Parse(filteredString, CultureInfo.CurrentCulture);
+        }
+        catch
+        {
+            // Todo: Do something meaningful with the exception, instead of swallowing.
+            throw new ArgumentException("Income was not an expected format.");
+        }
+    }
+
+    /// <summary>
+    /// Attempts to take an inpput string and return a valid pay frequency.
+    /// </summary>
+    /// <param name="userInput">The provided input.</param>
+    /// <returns>A valid pay frequency.</returns>
+    public PayCycleEnum.PayCycle ValidatePayFrequency(string userInput)
+    {
+        var firstCharacter = userInput.ToLower().First();
+        return PayCycleEnum.CharacterToPayCycle(firstCharacter);
     }
 
     /// <summary>
@@ -47,6 +66,26 @@ public class InputValidator
     /// <returns>Whether the model is valid.</returns>
     public bool ValidateInputModel(FinancialYearBaseInputModel model)
     {
-        return false;
+        try
+        {
+            model.ValidatedIncome = this.StrippedCurrencyString(model.ProvidedIncomeString);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
+
+        try
+        {
+            model.ValidatedPayFrequency = this.ValidatePayFrequency(model.ProvidedPayFrequencyString);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
+
+        return true;
     }
 }

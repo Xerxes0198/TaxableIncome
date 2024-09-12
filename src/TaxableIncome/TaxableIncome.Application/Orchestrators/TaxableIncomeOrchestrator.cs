@@ -4,7 +4,9 @@
 
 namespace TaxableIncome.Application.Orchestrators;
 
-using TaxableIncome.Application.Interfaces;
+using Interfaces.IncomeTaxCalculator;
+using FinancialYearModels;
+using Interfaces;
 
 /// <summary>
 /// The main orchestrator.
@@ -13,6 +15,7 @@ public class TaxableIncomeOrchestrator
 {
     private readonly InputCollector inputCollector;
     private readonly InputValidator inputValidator;
+    private readonly IncomeTaxCalculatorCommand incomeTaxCalculatorCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TaxableIncomeOrchestrator"/> class.
@@ -21,6 +24,7 @@ public class TaxableIncomeOrchestrator
     {
         this.inputCollector = new InputCollector();
         this.inputValidator = new InputValidator();
+        this.incomeTaxCalculatorCommand = new IncomeTaxCalculatorCommand();
     }
 
     /// <summary>
@@ -28,10 +32,17 @@ public class TaxableIncomeOrchestrator
     /// </summary>
     public void Execute2024Run()
     {
-        // Get input
-        var userInput = this.inputCollector.Get2024Inputs();
+        var financialYear2024InputModel = new FinancialYear2024InputModel();
 
-        // Validate Input
-        var inputValid = this.inputValidator.ValidateInputModel(userInput);
+        // Loop until we get valid input.
+        while (!this.inputValidator.ValidateInputModel(financialYear2024InputModel))
+        {
+            // Get input
+            financialYear2024InputModel = this.inputCollector.Get2024Inputs();
+        }
+
+        // At this point we have valid input. Call command
+        var request = new IncomeTaxRequest();
+        var response = this.incomeTaxCalculatorCommand.Execute(request);
     }
 }
