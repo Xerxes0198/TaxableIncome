@@ -36,6 +36,6 @@ public class InputValidatorTests : BaseUnitTests
     [Fact]
     public void InputValidationTest_StrippedCurrencyString_ThrowsException()
     {
-        Assert.Throws<FormatException>(() => this.InputValidator.StrippedCurrencyString("dgdbcvbxcfg"));
+        Assert.Throws<ArgumentException>(() => this.InputValidator.StrippedCurrencyString("dgdbcvbxcfg"));
     }
 }

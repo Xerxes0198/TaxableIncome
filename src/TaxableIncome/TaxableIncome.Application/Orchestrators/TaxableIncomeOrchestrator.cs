@@ -42,7 +42,7 @@ public class TaxableIncomeOrchestrator
         }
 
         // At this point we have valid input. Call command
-        var request = new IncomeTaxRequest();
+        var request = new IncomeTaxRequest(financialYear2024InputModel.ValidatedIncome, financialYear2024InputModel.ValidatedPayFrequency);
         var response = this.incomeTaxCalculatorCommand.Execute(request);
     }
 }

@@ -4,7 +4,7 @@
 
 namespace TaxableIncome.Application.FinancialYearModels;
 
-using Constants;
+using Classes;
 
 /// <summary>
 /// This is the abstract input model for all financial years.
@@ -19,7 +19,7 @@ public abstract class FinancialYearBaseInputModel
     /// <summary>
     /// Gets or sets the validated value used later in the program.
     /// </summary>
-    public decimal? ValidatedIncome { get; set; }
+    public decimal ValidatedIncome { get; set; }
 
     /// <summary>
     /// Gets or sets the user provided string for pay frequency.
@@ -29,5 +29,5 @@ public abstract class FinancialYearBaseInputModel
     /// <summary>
     /// Gets or sets the validated pay cycle.
     /// </summary>
-    public PayCycleEnum.PayCycle? ValidatedPayFrequency { get; set; }
+    public PayFrequency ValidatedPayFrequency { get; set; }
 }

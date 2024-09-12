@@ -5,6 +5,7 @@
 namespace TaxableIncome.Application.Interfaces;
 
 using FinancialYearModels;
+using Classes;
 using System.Text.RegularExpressions;
 using Constants;
 using System.Globalization;
@@ -53,10 +54,10 @@ public class InputValidator
     /// </summary>
     /// <param name="userInput">The provided input.</param>
     /// <returns>A valid pay frequency.</returns>
-    public PayCycleEnum.PayCycle ValidatePayFrequency(string userInput)
+    public PayFrequency ValidatePayFrequency(string userInput)
     {
         var firstCharacter = userInput.ToLower().First();
-        return PayCycleEnum.CharacterToPayCycle(firstCharacter);
+        return PayFrequencyExtensions.CharacterToPayCycle(firstCharacter);
     }
 
     /// <summary>
