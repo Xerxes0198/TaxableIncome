@@ -20,10 +20,10 @@ public class InputCollector
     {
         var financialYear2024InputModel = new FinancialYear2024InputModel();
 
-        Console.WriteLine(InputConstants.IncomeInputMessage);
+        Console.Write(InputConstants.IncomeInputMessage);
         financialYear2024InputModel.ProvidedIncomeString = Console.ReadLine() ?? string.Empty;
 
-        Console.WriteLine(InputConstants.PayCycleInputMessage);
+        Console.Write(InputConstants.PayCycleInputMessage);
         financialYear2024InputModel.ProvidedPayFrequencyString = Console.ReadLine() ?? string.Empty;
 
         return financialYear2024InputModel;

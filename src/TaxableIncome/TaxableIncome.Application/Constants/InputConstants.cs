@@ -22,5 +22,5 @@ public static class InputConstants
     /// <summary>
     /// This is the pay cycle message prompt presented to the user.
     /// </summary>
-    public static readonly string PayCycleInputMessage = "Please Enter your pay frequency (W for weekly, F for fortnightly, M for monthly): ";
+    public static readonly string PayCycleInputMessage = "Please enter your pay frequency (W for weekly, F for fortnightly, M for monthly): ";
 }

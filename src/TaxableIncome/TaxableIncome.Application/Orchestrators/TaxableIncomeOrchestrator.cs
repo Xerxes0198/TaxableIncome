@@ -35,11 +35,12 @@ public class TaxableIncomeOrchestrator
         var financialYear2024InputModel = new FinancialYear2024InputModel();
 
         // Loop until we get valid input.
-        while (!this.inputValidator.ValidateInputModel(financialYear2024InputModel))
+        do
         {
             // Get input
             financialYear2024InputModel = this.inputCollector.Get2024Inputs();
         }
+        while (!this.inputValidator.ValidateInputModel(financialYear2024InputModel));
 
         // At this point we have valid input. Call command
         var request = new IncomeTaxRequest(financialYear2024InputModel.ValidatedIncome, financialYear2024InputModel.ValidatedPayFrequency);

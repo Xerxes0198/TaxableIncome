@@ -71,9 +71,9 @@ public class InputValidator
         {
             model.ValidatedIncome = this.StrippedCurrencyString(model.ProvidedIncomeString);
         }
-        catch (Exception e)
+        catch
         {
-            Console.WriteLine(e);
+            Console.WriteLine($"The provided income was not valid: {model.ProvidedIncomeString}.");
             return false;
         }
 
@@ -81,9 +81,9 @@ public class InputValidator
         {
             model.ValidatedPayFrequency = this.ValidatePayFrequency(model.ProvidedPayFrequencyString);
         }
-        catch (Exception e)
+        catch
         {
-            Console.WriteLine(e);
+            Console.WriteLine($"The provided income was not valid: {model.ProvidedPayFrequencyString}.");
             return false;
         }
 
