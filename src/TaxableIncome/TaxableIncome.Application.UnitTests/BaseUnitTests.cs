@@ -17,10 +17,16 @@ public abstract class BaseUnitTests
     protected BaseUnitTests()
     {
         this.InputValidator = new InputValidator();
+        this.LevyCalculator = new LevyCalculator();
     }
 
     /// <summary>
     /// Gets the instance of the input validation class for these tests.
     /// </summary>
     public InputValidator InputValidator { get; }
+
+    /// <summary>
+    /// Gets the levy calculator for tests.
+    /// </summary>
+    public LevyCalculator LevyCalculator { get; }
 }

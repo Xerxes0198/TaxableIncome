@@ -4,13 +4,20 @@
 
 namespace TaxableIncome.Application.Interfaces.IncomeTaxCalculator;
 
-using TaxableIncome.Application.Constants.TaxConstants;
+using Constants.TaxConstants;
 
 /// <summary>
 /// The income tax calculator command.
 /// </summary>
 public class IncomeTaxCalculatorCommand
 {
+    private readonly LevyCalculator levyCalculator;
+
+    public IncomeTaxCalculatorCommand()
+    {
+        this.levyCalculator = new LevyCalculator();
+    }
+
     /// <summary>
     /// Executes this command.
     /// </summary>
@@ -23,7 +30,7 @@ public class IncomeTaxCalculatorCommand
         var superContribution = taxableSalary * FinancialYear2018Constants.SuperPercentage;
 
         // Calculate medicare levy
-        var medicareLevy = LevyCalculator.Get2018Levy(taxableSalary);
+        var medicareLevy = levyCalculator.Get2018Levy(taxableSalary);
 
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine($"Gross Package: ${incomeTaxRequest.Income:0,000.00}");

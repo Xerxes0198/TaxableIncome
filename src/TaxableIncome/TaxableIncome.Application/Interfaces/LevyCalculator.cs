@@ -9,14 +9,14 @@ using Constants.TaxConstants;
 /// <summary>
 /// This class holds some basic levy functions.
 /// </summary>
-public static class LevyCalculator
+public class LevyCalculator
 {
     /// <summary>
     /// Get the calulated medicare levy payments from an income for the financial year 2018.
     /// </summary>
     /// <param name="income">The income.</param>
     /// <returns>The calculated return</returns>
-    public static decimal Get2018Levy(decimal income)
+    public decimal Get2018Levy(decimal income)
     {
         if (income < FinancialYear2018Constants.MedicareLevyLowExcess)
         {
