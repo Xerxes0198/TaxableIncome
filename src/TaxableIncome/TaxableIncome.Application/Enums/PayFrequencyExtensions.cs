@@ -2,9 +2,9 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace TaxableIncome.Application.Constants;
+namespace TaxableIncome.Application.Enums;
 
-using Classes;
+using Enums;
 
 /// <summary>
 /// Pay frequency extensions.

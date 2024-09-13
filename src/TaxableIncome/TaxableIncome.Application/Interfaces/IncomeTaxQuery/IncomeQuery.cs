@@ -5,7 +5,7 @@
 namespace TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
 using Constants;
-using Classes;
+using Enums;
 using Constants.TaxConstants;
 using Interfaces;
 
@@ -71,9 +71,9 @@ public class IncomeQuery
 
         // Build up the response and return it.
         return new IncomeQueryResponse(
-            medicareLevy == decimal.Zero,
+            medicareLevy != decimal.Zero,
             medicareLevy,
-            budgetRepairLevy == decimal.Zero,
+            budgetRepairLevy != decimal.Zero,
             budgetRepairLevy,
             incomeTaxRequest.Income,
             taxableSalary,

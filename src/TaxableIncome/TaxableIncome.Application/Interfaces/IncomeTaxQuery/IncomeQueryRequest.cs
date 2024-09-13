@@ -4,7 +4,7 @@
 
 namespace TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
-using Classes;
+using Enums;
 
 /// <summary>
 /// The request object for the <see cref="IncomeQuery"/> command.

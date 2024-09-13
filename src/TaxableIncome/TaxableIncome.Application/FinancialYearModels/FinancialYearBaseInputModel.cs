@@ -4,7 +4,7 @@
 
 namespace TaxableIncome.Application.FinancialYearModels;
 
-using Classes;
+using Enums;
 
 /// <summary>
 /// This is the abstract input model for all financial years.

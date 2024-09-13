@@ -63,10 +63,16 @@ public class TaxableIncomeOrchestrator
         Console.WriteLine($"Gross Package: ${incomeQueryResponse.GrossPackage:0,000.00}");
         Console.WriteLine($"Super: ${incomeQueryResponse.SuperContribution:0,000.00}");
         Console.WriteLine($"Taxable income: ${incomeQueryResponse.TaxableSalary:0,000.00}");
-        Console.WriteLine($"Medicare Levy: ${incomeQueryResponse.MedicareLevy:0,000.00}");
-        Console.WriteLine($"Budget Repair Levy: ${incomeQueryResponse.BudgetRepairLevy:0,000.00}");
+
+        Console.WriteLine(incomeQueryResponse.MedicareLevyChargeRequired
+            ? $"Medicare Levy: ${incomeQueryResponse.MedicareLevy:0,000.00}"
+            : $"Medicare Levy not charged.");
+
+        Console.WriteLine(incomeQueryResponse.BudgetRepairLevyRequired
+            ? $"Budget Repair Levy: ${incomeQueryResponse.BudgetRepairLevy:0,000.00}"
+            : $"Budget Repair Levy not charged.");
+
         Console.WriteLine($"Income Tax: ${incomeQueryResponse.IncomeTax:0,000.00}");
-        Console.WriteLine(string.Empty);
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine($"Net income: ${incomeQueryResponse.NetIncome:0,000.00}");
         Console.WriteLine($"Net income: ${incomeQueryResponse.PayPacket:0,000.00} {incomeQueryResponse.PayFrequency}");

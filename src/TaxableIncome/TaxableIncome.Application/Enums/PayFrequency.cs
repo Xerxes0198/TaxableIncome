@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace TaxableIncome.Application.Classes;
+namespace TaxableIncome.Application.Enums;
 
 /// <summary>
 /// Pay Frequency enum.

@@ -5,7 +5,7 @@
 namespace TaxableIncome.Application.Interfaces;
 
 using FinancialYearModels;
-using Classes;
+using Enums;
 using System.Text.RegularExpressions;
 using Constants;
 using System.Globalization;
