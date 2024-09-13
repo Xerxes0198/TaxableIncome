@@ -48,5 +48,28 @@ public class TaxableIncomeOrchestrator
 
         // Send request to command.
         var response = this.incomeQuery.Execute(request);
+
+        // Log the output.
+        this.LogOutput(response);
+    }
+
+    /// <summary>
+    /// Takes in a response and logs all output.
+    /// </summary>
+    /// <param name="incomeQueryResponse">An instance of a <see cref="IncomeQueryResponse"/>.</param>
+    private void LogOutput(IncomeQueryResponse incomeQueryResponse)
+    {
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine($"Gross Package: ${incomeQueryResponse.GrossPackage:0,000.00}");
+        Console.WriteLine($"Super: ${incomeQueryResponse.SuperContribution:0,000.00}");
+        Console.WriteLine($"Taxable income: ${incomeQueryResponse.TaxableSalary:0,000.00}");
+        Console.WriteLine($"Medicare Levy: ${incomeQueryResponse.MedicareLevy:0,000.00}");
+        Console.WriteLine($"Budget Repair Levy: ${incomeQueryResponse.BudgetRepairLevy:0,000.00}");
+        Console.WriteLine($"Income Tax: ${incomeQueryResponse.IncomeTax:0,000.00}");
+        Console.WriteLine(string.Empty);
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine($"Net income: ${incomeQueryResponse.NetIncome:0,000.00}");
+        Console.WriteLine($"Net income: ${incomeQueryResponse.PayPacket:0,000.00} {incomeQueryResponse.PayFrequency}");
+        Console.WriteLine("-----------------------------------------");
     }
 }

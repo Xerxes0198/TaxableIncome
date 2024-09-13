@@ -13,6 +13,9 @@ public class IncomeTaxCalculator
 {
     private DataTable incomeTaxTable;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IncomeTaxCalculator"/> class.
+    /// </summary>
     public IncomeTaxCalculator()
     {
         this.incomeTaxTable = new DataTable();
@@ -37,9 +40,9 @@ public class IncomeTaxCalculator
     /// <returns>The calculated return.</returns>
     public decimal Get2018IncomeTax(decimal income)
     {
-        decimal currentTaxPercentage = 0.00M;
-        decimal currentExcess = 0.00M;
-        decimal currentMinTaxAmount = 0.00M;
+        decimal currentTaxPercentage = decimal.Zero;
+        decimal currentExcess = decimal.Zero;
+        decimal currentMinTaxAmount = decimal.Zero;
 
         // Get current tax bracket:
         for (var i = 0; i < this.incomeTaxTable.Rows.Count; i++)

@@ -4,6 +4,8 @@
 
 namespace TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
+using Constants;
+using Classes;
 using Constants.TaxConstants;
 using Interfaces;
 
@@ -49,17 +51,36 @@ public class IncomeQuery
         // Net calculation
         var netIncome = incomeTaxRequest.Income - superContribution - medicareLevy - budgetRepairLevy - incomeTax;
 
-        Console.WriteLine("-----------------------------------------");
-        Console.WriteLine($"Gross Package: ${incomeTaxRequest.Income:0,000.00}");
-        Console.WriteLine($"Super: ${superContribution:0,000.00}");
-        Console.WriteLine("-----------------------------------------");
-        Console.WriteLine($"Taxable income: ${taxableSalary:0,000.00}");
-        Console.WriteLine($"Medicare Levy: ${medicareLevy:0,000.00}");
-        Console.WriteLine($"Budget Repair Levy: ${budgetRepairLevy:0,000.00}");
-        Console.WriteLine($"Income Tax: ${incomeTax:0,000.00}");
+        // Pay packet per frequency.
+        decimal payPacket = decimal.Zero;
 
-        Console.WriteLine($"Net income: ${netIncome:0,000.00}");
+        switch (incomeTaxRequest.PayFrequency)
+        {
+            case PayFrequency.Weekly:
+                payPacket = netIncome / DateConstants.WeeksPerYear;
+                break;
 
-        return new IncomeQueryResponse();
+            case PayFrequency.Fortnightly:
+                payPacket = netIncome / DateConstants.FortnightsPerYear;
+                break;
+
+            case PayFrequency.Monthly:
+                payPacket = netIncome / DateConstants.MonthsPerYear;
+                break;
+        }
+
+        // Build up the response and return it.
+        return new IncomeQueryResponse(
+            medicareLevy == decimal.Zero,
+            medicareLevy,
+            budgetRepairLevy == decimal.Zero,
+            budgetRepairLevy,
+            incomeTaxRequest.Income,
+            taxableSalary,
+            superContribution,
+            incomeTax,
+            netIncome,
+            payPacket,
+            incomeTaxRequest.PayFrequency);
     }
 }
