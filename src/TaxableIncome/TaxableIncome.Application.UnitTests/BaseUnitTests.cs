@@ -16,11 +16,23 @@ public abstract class BaseUnitTests
     /// </summary>
     protected BaseUnitTests()
     {
-        this.InputValidation = new InputValidation();
+        this.InputValidator = new InputValidator();
+        this.MedicareLevyCalculator = new MedicareLevyCalculator();
+        this.IncomeTaxCalculator = new IncomeTaxCalculator();
     }
 
     /// <summary>
     /// Gets the instance of the input validation class for these tests.
     /// </summary>
-    public InputValidation InputValidation { get; }
+    public InputValidator InputValidator { get; }
+
+    /// <summary>
+    /// Gets the levy calculator for tests.
+    /// </summary>
+    public MedicareLevyCalculator MedicareLevyCalculator { get; }
+
+    /// <summary>
+    /// Gets the IncomeTaxCalculator calculator for tests.
+    /// </summary>
+    public IncomeTaxCalculator IncomeTaxCalculator { get; }
 }
