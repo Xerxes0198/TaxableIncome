@@ -9,14 +9,14 @@ using Constants.TaxConstants;
 /// <summary>
 /// This class holds budget repair levy functions.
 /// </summary>
-public static class BudgetRepairCalculator
+public class BudgetRepairCalculator
 {
     /// <summary>
     /// Get the calulated bedugte repair levy payments from an income for the financial year 2018.
     /// </summary>
     /// <param name="income">The income.</param>
     /// <returns>The calculated return.</returns>
-    public static decimal Get2018BudgetRepairLevy(decimal income)
+    public decimal Get2018BudgetRepairLevy(decimal income)
     {
         if (income < FinancialYear2018Constants.BudgetRepairLevyCutoff)
         {

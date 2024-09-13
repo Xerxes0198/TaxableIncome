@@ -17,7 +17,7 @@ public abstract class BaseUnitTests
     protected BaseUnitTests()
     {
         this.InputValidator = new InputValidator();
-        this.LevyCalculator = new LevyCalculator();
+        this.MedicareLevyCalculator = new MedicareLevyCalculator();
     }
 
     /// <summary>
@@ -28,5 +28,5 @@ public abstract class BaseUnitTests
     /// <summary>
     /// Gets the levy calculator for tests.
     /// </summary>
-    public LevyCalculator LevyCalculator { get; }
+    public MedicareLevyCalculator MedicareLevyCalculator { get; }
 }

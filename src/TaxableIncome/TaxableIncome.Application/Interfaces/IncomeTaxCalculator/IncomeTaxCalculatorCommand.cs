@@ -11,11 +11,16 @@ using Constants.TaxConstants;
 /// </summary>
 public class IncomeTaxCalculatorCommand
 {
-    private readonly LevyCalculator levyCalculator;
+    private readonly MedicareLevyCalculator medicareLevyCalculator;
+    private readonly BudgetRepairCalculator budgetRepairCalculator;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IncomeTaxCalculatorCommand"/> class.
+    /// </summary>
     public IncomeTaxCalculatorCommand()
     {
-        this.levyCalculator = new LevyCalculator();
+        this.medicareLevyCalculator = new MedicareLevyCalculator();
+        this.budgetRepairCalculator = new BudgetRepairCalculator();
     }
 
     /// <summary>
@@ -30,7 +35,10 @@ public class IncomeTaxCalculatorCommand
         var superContribution = taxableSalary * FinancialYear2018Constants.SuperPercentage;
 
         // Calculate medicare levy
-        var medicareLevy = levyCalculator.Get2018Levy(taxableSalary);
+        var medicareLevy = this.medicareLevyCalculator.Get2018Levy(taxableSalary);
+
+        // Budget Repair Levy
+        var budgetRepairLevy = this.budgetRepairCalculator.Get2018BudgetRepairLevy(taxableSalary);
 
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine($"Gross Package: ${incomeTaxRequest.Income:0,000.00}");
@@ -38,6 +46,7 @@ public class IncomeTaxCalculatorCommand
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine($"Taxable income: ${taxableSalary:0,000.00}");
         Console.WriteLine($"Medicare Levy: ${medicareLevy:0,000.00}");
+        Console.WriteLine($"Budget Repair Levy: ${budgetRepairLevy:0,000.00}");
 
         return new IncomeTaxResponse();
     }

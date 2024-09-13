@@ -1,4 +1,4 @@
-// <copyright file="LevyCalculator.cs" company="PlaceholderCompany">
+// <copyright file="MedicareLevyCalculator.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -9,7 +9,7 @@ using Constants.TaxConstants;
 /// <summary>
 /// This class holds some basic levy functions.
 /// </summary>
-public class LevyCalculator
+public class MedicareLevyCalculator
 {
     /// <summary>
     /// Get the calulated medicare levy payments from an income for the financial year 2018.

@@ -4,7 +4,7 @@
 
 namespace TaxableIncome.Application.UnitTests.Interfaces;
 
-public class LevyCalculatorTests : BaseUnitTests
+public class MedicareLevyCalculatorTests : BaseUnitTests
 {
     /// <summary>
     /// 
