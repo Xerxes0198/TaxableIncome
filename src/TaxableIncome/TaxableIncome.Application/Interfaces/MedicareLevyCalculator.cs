@@ -12,10 +12,10 @@ using Constants.TaxConstants;
 public class MedicareLevyCalculator
 {
     /// <summary>
-    /// Get the calulated medicare levy payments from an income for the financial year 2018.
+    /// Get the calculated medicare levy payments from an income for the financial year 2018.
     /// </summary>
     /// <param name="income">The income.</param>
-    /// <returns>The calculated return</returns>
+    /// <returns>The calculated return.</returns>
     public decimal Get2018Levy(decimal income)
     {
         if (income < FinancialYear2018Constants.MedicareLevyLowExcess)

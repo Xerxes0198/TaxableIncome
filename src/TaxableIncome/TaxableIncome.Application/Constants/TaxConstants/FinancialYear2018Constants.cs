@@ -1,3 +1,7 @@
+// <copyright file="FinancialYear2018Constants.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 namespace TaxableIncome.Application.Constants.TaxConstants;
 
 /// <summary>

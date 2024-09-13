@@ -1,22 +1,22 @@
-// <copyright file="IncomeTaxRequest.cs" company="PlaceholderCompany">
+// <copyright file="IncomeQueryRequest.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace TaxableIncome.Application.Interfaces.IncomeTaxCalculator;
+namespace TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
 using Classes;
 
 /// <summary>
-/// The request object for the <see cref="IncomeTaxCalculatorCommand"/> command.
+/// The request object for the <see cref="IncomeQuery"/> command.
 /// </summary>
-public class IncomeTaxRequest
+public class IncomeQueryRequest
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="IncomeTaxRequest"/> class.
+    /// Initializes a new instance of the <see cref="IncomeQueryRequest"/> class.
     /// </summary>
     /// <param name="income">The income for this request.</param>
     /// <param name="payFrequency">The pay frequency for this request.</param>
-    public IncomeTaxRequest(decimal income, PayFrequency payFrequency)
+    public IncomeQueryRequest(decimal income, PayFrequency payFrequency)
     {
         this.Income = income;
         this.PayFrequency = payFrequency;

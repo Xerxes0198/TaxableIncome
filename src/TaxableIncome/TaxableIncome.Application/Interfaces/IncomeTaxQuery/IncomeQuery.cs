@@ -1,34 +1,37 @@
-// <copyright file="IncomeTaxCalculatorCommand.cs" company="PlaceholderCompany">
+// <copyright file="IncomeQuery.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace TaxableIncome.Application.Interfaces.IncomeTaxCalculator;
+namespace TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
 using Constants.TaxConstants;
+using Interfaces;
 
 /// <summary>
-/// The income tax calculator command.
+/// The income tax calculator query.
 /// </summary>
-public class IncomeTaxCalculatorCommand
+public class IncomeQuery
 {
     private readonly MedicareLevyCalculator medicareLevyCalculator;
     private readonly BudgetRepairCalculator budgetRepairCalculator;
+    private readonly IncomeTaxCalculator incomeTaxCalculator;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="IncomeTaxCalculatorCommand"/> class.
+    /// Initializes a new instance of the <see cref="IncomeQuery"/> class.
     /// </summary>
-    public IncomeTaxCalculatorCommand()
+    public IncomeQuery()
     {
         this.medicareLevyCalculator = new MedicareLevyCalculator();
         this.budgetRepairCalculator = new BudgetRepairCalculator();
+        this.incomeTaxCalculator = new IncomeTaxCalculator();
     }
 
     /// <summary>
-    /// Executes this command.
+    /// Executes this query.
     /// </summary>
-    /// <param name="incomeTaxRequest">The given <see cref="IncomeTaxRequest"/> object for this tax calculations.</param>
-    /// <returns>A populated version of <see cref="IncomeTaxResponse"/>.</returns>
-    public IncomeTaxResponse Execute(IncomeTaxRequest incomeTaxRequest)
+    /// <param name="incomeTaxRequest">The given <see cref="IncomeQueryRequest"/> object for this tax calculations.</param>
+    /// <returns>A populated version of <see cref="IncomeQueryResponse"/>.</returns>
+    public IncomeQueryResponse Execute(IncomeQueryRequest incomeTaxRequest)
     {
         // Calculate Super
         var taxableSalary = incomeTaxRequest.Income / (1 + FinancialYear2018Constants.SuperPercentage);
@@ -40,6 +43,12 @@ public class IncomeTaxCalculatorCommand
         // Budget Repair Levy
         var budgetRepairLevy = this.budgetRepairCalculator.Get2018BudgetRepairLevy(taxableSalary);
 
+        // Income tax
+        var incomeTax = this.incomeTaxCalculator.Get2018IncomeTax(taxableSalary);
+
+        // Net calculation
+        var netIncome = incomeTaxRequest.Income - superContribution - medicareLevy - budgetRepairLevy - incomeTax;
+
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine($"Gross Package: ${incomeTaxRequest.Income:0,000.00}");
         Console.WriteLine($"Super: ${superContribution:0,000.00}");
@@ -47,7 +56,10 @@ public class IncomeTaxCalculatorCommand
         Console.WriteLine($"Taxable income: ${taxableSalary:0,000.00}");
         Console.WriteLine($"Medicare Levy: ${medicareLevy:0,000.00}");
         Console.WriteLine($"Budget Repair Levy: ${budgetRepairLevy:0,000.00}");
+        Console.WriteLine($"Income Tax: ${incomeTax:0,000.00}");
 
-        return new IncomeTaxResponse();
+        Console.WriteLine($"Net income: ${netIncome:0,000.00}");
+
+        return new IncomeQueryResponse();
     }
 }

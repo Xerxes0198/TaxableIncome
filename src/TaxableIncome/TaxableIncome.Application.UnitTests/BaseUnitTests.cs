@@ -18,6 +18,7 @@ public abstract class BaseUnitTests
     {
         this.InputValidator = new InputValidator();
         this.MedicareLevyCalculator = new MedicareLevyCalculator();
+        this.IncomeTaxCalculator = new IncomeTaxCalculator();
     }
 
     /// <summary>
@@ -29,4 +30,9 @@ public abstract class BaseUnitTests
     /// Gets the levy calculator for tests.
     /// </summary>
     public MedicareLevyCalculator MedicareLevyCalculator { get; }
+
+    /// <summary>
+    /// Gets the IncomeTaxCalculator calculator for tests.
+    /// </summary>
+    public IncomeTaxCalculator IncomeTaxCalculator { get; }
 }

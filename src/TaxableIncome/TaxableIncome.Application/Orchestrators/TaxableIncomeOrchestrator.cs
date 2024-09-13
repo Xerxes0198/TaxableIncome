@@ -4,7 +4,7 @@
 
 namespace TaxableIncome.Application.Orchestrators;
 
-using Interfaces.IncomeTaxCalculator;
+using Interfaces.IncomeTaxQuery;
 using FinancialYearModels;
 using Interfaces;
 
@@ -15,7 +15,7 @@ public class TaxableIncomeOrchestrator
 {
     private readonly InputCollector inputCollector;
     private readonly InputValidator inputValidator;
-    private readonly IncomeTaxCalculatorCommand incomeTaxCalculatorCommand;
+    private readonly IncomeQuery incomeQuery;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TaxableIncomeOrchestrator"/> class.
@@ -24,7 +24,7 @@ public class TaxableIncomeOrchestrator
     {
         this.inputCollector = new InputCollector();
         this.inputValidator = new InputValidator();
-        this.incomeTaxCalculatorCommand = new IncomeTaxCalculatorCommand();
+        this.incomeQuery = new IncomeQuery();
     }
 
     /// <summary>
@@ -32,18 +32,21 @@ public class TaxableIncomeOrchestrator
     /// </summary>
     public void Execute2024Run()
     {
-        var financialYear2024InputModel = new FinancialYear2024InputModel();
+        FinancialYear2024InputModel financialYear2024InputModel;
 
-        // Loop until we get valid input.
+        // Get input and validate it.
         do
         {
-            // Get input
             financialYear2024InputModel = this.inputCollector.Get2024Inputs();
         }
         while (!this.inputValidator.ValidateInputModel(financialYear2024InputModel));
 
-        // At this point we have valid input. Call command
-        var request = new IncomeTaxRequest(financialYear2024InputModel.ValidatedIncome, financialYear2024InputModel.ValidatedPayFrequency);
-        var response = this.incomeTaxCalculatorCommand.Execute(request);
+        // At this point we know have valid input.
+
+        // Assemble request.
+        var request = new IncomeQueryRequest(financialYear2024InputModel.ValidatedIncome, financialYear2024InputModel.ValidatedPayFrequency);
+
+        // Send request to command.
+        var response = this.incomeQuery.Execute(request);
     }
 }
