@@ -36,8 +36,8 @@ public class IncomeQuery
     public IncomeQueryResponse Execute(IncomeQueryRequest incomeTaxRequest)
     {
         // Calculate Super
-        var taxableSalary = incomeTaxRequest.Income / (1 + FinancialYear2018Constants.SuperPercentage);
-        var superContribution = taxableSalary * FinancialYear2018Constants.SuperPercentage;
+        var taxableSalary = Income / (1 + FinancialYear2018Constants.SuperPercentage);
+
 
         // Calculate medicare levy
         var medicareLevy = this.medicareLevyCalculator.Get2018Levy(taxableSalary);

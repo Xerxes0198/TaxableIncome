@@ -5,6 +5,7 @@
 namespace TaxableIncome.Application.UnitTests;
 
 using TaxableIncome.Application.Interfaces;
+using TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
 /// <summary>
 /// The base class for unit tests in this project.
@@ -19,6 +20,8 @@ public abstract class BaseUnitTests
         this.InputValidator = new InputValidator();
         this.MedicareLevyCalculator = new MedicareLevyCalculator();
         this.IncomeTaxCalculator = new IncomeTaxCalculator();
+        this.IncomeTaxCalculator = new IncomeTaxCalculator();
+        this.IncomeQuery = new IncomeQuery();
     }
 
     /// <summary>
@@ -35,4 +38,9 @@ public abstract class BaseUnitTests
     /// Gets the IncomeTaxCalculator calculator for tests.
     /// </summary>
     public IncomeTaxCalculator IncomeTaxCalculator { get; }
+
+    /// <summary>
+    /// Gets the IncomeQuery instance for tests.
+    /// </summary>
+    public IncomeQuery IncomeQuery { get; }
 }
