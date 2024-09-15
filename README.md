@@ -19,6 +19,8 @@ All of the components in the Taxable Income solution have been designed with exp
 - Cleaner and smaller PRs.
 - Code changes impact a smaller area, creating more meaningful reviews.
 - Code which is Unit Test friendly.
+- Validation and Query execution can be easily decoupled from a console application and used in an API, or other use-case.
+- Calculators can be made generic and registered with a service container, for DI when generics are introduced.
 
 # Proposed Future Enhancements
 
