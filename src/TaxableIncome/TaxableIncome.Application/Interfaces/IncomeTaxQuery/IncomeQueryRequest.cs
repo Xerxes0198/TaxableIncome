@@ -14,18 +14,18 @@ public class IncomeQueryRequest
     /// <summary>
     /// Initializes a new instance of the <see cref="IncomeQueryRequest"/> class.
     /// </summary>
-    /// <param name="income">The income for this request.</param>
+    /// <param name="totalPackageIncome">The income for this request.</param>
     /// <param name="payFrequency">The pay frequency for this request.</param>
-    public IncomeQueryRequest(decimal income, PayFrequency payFrequency)
+    public IncomeQueryRequest(decimal totalPackageIncome, PayFrequency payFrequency)
     {
-        this.Income = income;
+        this.TotalPackageIncome = totalPackageIncome;
         this.PayFrequency = payFrequency;
     }
 
     /// <summary>
     /// Gets the income for this request.
     /// </summary>
-    public decimal Income { get; private set; }
+    public decimal TotalPackageIncome { get; private set; }
 
     /// <summary>
     /// Gets the pay frequency for this request.
