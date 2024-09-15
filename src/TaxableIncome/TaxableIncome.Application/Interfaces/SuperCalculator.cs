@@ -4,7 +4,8 @@
 
 namespace TaxableIncome.Application.Interfaces;
 
-using TaxableIncome.Application.Constants.TaxConstants;
+using Constants.TaxConstants;
+using Helpers;
 
 /// <summary>
 /// This class is the super calculator, not to be confused with a super calculator.
@@ -18,6 +19,6 @@ public class SuperCalculator
     /// <returns>The calculated super contribution for this year, rounded to nearest cent.</returns>
     public decimal Get2018SuperContribution(decimal income)
     {
-        return Math.Round(income * FinancialYear2018Constants.SuperPercentage, 2);
+        return (income * FinancialYear2018Constants.SuperPercentage).RoundToCent();
     }
 }

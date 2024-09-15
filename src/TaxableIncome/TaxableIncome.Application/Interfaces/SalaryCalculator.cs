@@ -4,6 +4,7 @@
 
 namespace TaxableIncome.Application.Interfaces;
 
+using Helpers;
 using Constants.TaxConstants;
 
 /// <summary>
@@ -19,6 +20,6 @@ public class SalaryCalculator
     public decimal GetSalaryFromPackage(decimal totalPackage)
     {
         // Salary is always 1 + super percentage for that year.
-        return totalPackage / (1 + FinancialYear2018Constants.SuperPercentage);
+        return (totalPackage / (1 + FinancialYear2018Constants.SuperPercentage)).RoundToCent();
     }
 }

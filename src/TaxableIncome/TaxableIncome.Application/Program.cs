@@ -17,7 +17,7 @@ public class Program
     public Program()
     {
         var taxableIncomeOrchestrator = new TaxableIncomeOrchestrator();
-        taxableIncomeOrchestrator.Execute2024Run();
+        taxableIncomeOrchestrator.Execute2018Run();
     }
 
     /// <summary>

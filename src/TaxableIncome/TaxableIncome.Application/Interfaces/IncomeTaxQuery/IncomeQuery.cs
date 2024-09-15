@@ -4,6 +4,7 @@
 
 namespace TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
+using Helpers;
 using Constants;
 using Enums;
 using Interfaces;
@@ -62,15 +63,15 @@ public class IncomeQuery
         switch (incomeTaxRequest.PayFrequency)
         {
             case PayFrequency.Weekly:
-                payPacket = netIncome / DateConstants.WeeksPerYear;
+                payPacket = (netIncome / DateConstants.WeeksPerYear).RoundToCent();
                 break;
 
             case PayFrequency.Fortnightly:
-                payPacket = netIncome / DateConstants.FortnightsPerYear;
+                payPacket = (netIncome / DateConstants.FortnightsPerYear).RoundToCent();
                 break;
 
             case PayFrequency.Monthly:
-                payPacket = netIncome / DateConstants.MonthsPerYear;
+                payPacket = (netIncome / DateConstants.MonthsPerYear).RoundToCent();
                 break;
         }
 

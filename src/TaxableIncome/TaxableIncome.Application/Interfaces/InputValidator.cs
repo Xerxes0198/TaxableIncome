@@ -67,6 +67,8 @@ public class InputValidator
     /// <returns>Whether the model is valid.</returns>
     public bool ValidateInputModel(FinancialYearBaseInputModel model)
     {
+        bool inputValidationPassed = true;
+
         try
         {
             model.ValidatedIncome = this.StrippedCurrencyString(model.ProvidedIncomeString);
@@ -74,7 +76,7 @@ public class InputValidator
         catch
         {
             Console.WriteLine($"The provided income was not valid: {model.ProvidedIncomeString}.");
-            return false;
+            inputValidationPassed = false;
         }
 
         try
@@ -83,10 +85,10 @@ public class InputValidator
         }
         catch
         {
-            Console.WriteLine($"The provided income was not valid: {model.ProvidedPayFrequencyString}.");
-            return false;
+            Console.WriteLine($"The provided pay frequency is not valid: {model.ProvidedPayFrequencyString}.");
+            inputValidationPassed = false;
         }
 
-        return true;
+        return inputValidationPassed;
     }
 }

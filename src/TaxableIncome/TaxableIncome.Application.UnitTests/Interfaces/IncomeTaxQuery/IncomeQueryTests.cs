@@ -2,10 +2,9 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using TaxableIncome.Application.Enums;
-
 namespace TaxableIncome.Application.UnitTests.Interfaces.IncomeTaxQuery;
 
+using Enums;
 using TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
 /// <summary>
@@ -24,9 +23,18 @@ public class IncomeQueryTests : BaseUnitTests
 
         var response = this.IncomeQuery.Execute(request);
 
+        Assert.Equal(65000M, response.GrossPackage);
         Assert.Equal(5639.27M, response.SuperContribution);
 
-        Assert.Equal(true, response.MedicareLevyChargeRequired);
+        Assert.Equal(59360.73M, response.TaxableSalary);
+
+        Assert.True(response.MedicareLevyChargeRequired);
         Assert.Equal(1188.00M, response.MedicareLevy);
+
+        Assert.False(response.BudgetRepairLevyRequired);
+        Assert.Equal(10839.00M, response.IncomeTax);
+
+        Assert.Equal(47333.73M, response.NetIncome);
+        Assert.Equal(3944.48M, response.PayPacket);
     }
 }

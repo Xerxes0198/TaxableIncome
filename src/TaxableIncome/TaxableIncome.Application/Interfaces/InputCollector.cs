@@ -13,19 +13,19 @@ using FinancialYearModels;
 public class InputCollector
 {
     /// <summary>
-    /// Collect the inputs for the financial year 2024.
+    /// Collect the inputs for the financial year 2018.
     /// </summary>
-    /// <returns>Returns a <see cref="FinancialYearBaseInputModel"/> for the year 2024.</returns>
-    public FinancialYear2024InputModel Get2024Inputs()
+    /// <returns>Returns a <see cref="FinancialYearBaseInputModel"/> for the year 2018.</returns>
+    public FinancialYear2018InputModel Get2018Inputs()
     {
-        var financialYear2024InputModel = new FinancialYear2024InputModel();
+        var financialYear2018InputModel = new FinancialYear2018InputModel();
 
         Console.Write(InputConstants.IncomeInputMessage);
-        financialYear2024InputModel.ProvidedIncomeString = Console.ReadLine() ?? string.Empty;
+        financialYear2018InputModel.ProvidedIncomeString = Console.ReadLine() ?? string.Empty;
 
         Console.Write(InputConstants.PayCycleInputMessage);
-        financialYear2024InputModel.ProvidedPayFrequencyString = Console.ReadLine() ?? string.Empty;
+        financialYear2018InputModel.ProvidedPayFrequencyString = Console.ReadLine() ?? string.Empty;
 
-        return financialYear2024InputModel;
+        return financialYear2018InputModel;
     }
 }
