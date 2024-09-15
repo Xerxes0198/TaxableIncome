@@ -4,9 +4,9 @@
 
 namespace TaxableIncome.Application.Interfaces.IncomeTaxQuery;
 
+using Helpers;
 using Constants;
 using Enums;
-using Constants.TaxConstants;
 using Interfaces;
 
 /// <summary>
@@ -17,6 +17,8 @@ public class IncomeQuery
     private readonly MedicareLevyCalculator medicareLevyCalculator;
     private readonly BudgetRepairCalculator budgetRepairCalculator;
     private readonly IncomeTaxCalculator incomeTaxCalculator;
+    private readonly SalaryCalculator salaryCalculator;
+    private readonly SuperCalculator superCalculator;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IncomeQuery"/> class.
@@ -26,6 +28,8 @@ public class IncomeQuery
         this.medicareLevyCalculator = new MedicareLevyCalculator();
         this.budgetRepairCalculator = new BudgetRepairCalculator();
         this.incomeTaxCalculator = new IncomeTaxCalculator();
+        this.salaryCalculator = new SalaryCalculator();
+        this.superCalculator = new SuperCalculator();
     }
 
     /// <summary>
@@ -35,9 +39,11 @@ public class IncomeQuery
     /// <returns>A populated version of <see cref="IncomeQueryResponse"/>.</returns>
     public IncomeQueryResponse Execute(IncomeQueryRequest incomeTaxRequest)
     {
-        // Calculate Super
-        var taxableSalary = incomeTaxRequest.Income / (1 + FinancialYear2018Constants.SuperPercentage);
-        var superContribution = taxableSalary * FinancialYear2018Constants.SuperPercentage;
+        // Calculate income.
+        var taxableSalary = this.salaryCalculator.GetSalaryFromPackage(incomeTaxRequest.TotalPackageIncome);
+
+        // Calculate super.
+        var superContribution = this.superCalculator.Get2018SuperContribution(taxableSalary);
 
         // Calculate medicare levy
         var medicareLevy = this.medicareLevyCalculator.Get2018Levy(taxableSalary);
@@ -49,7 +55,7 @@ public class IncomeQuery
         var incomeTax = this.incomeTaxCalculator.Get2018IncomeTax(taxableSalary);
 
         // Net calculation
-        var netIncome = incomeTaxRequest.Income - superContribution - medicareLevy - budgetRepairLevy - incomeTax;
+        var netIncome = incomeTaxRequest.TotalPackageIncome - superContribution - medicareLevy - budgetRepairLevy - incomeTax;
 
         // Pay packet per frequency.
         decimal payPacket = decimal.Zero;
@@ -57,15 +63,15 @@ public class IncomeQuery
         switch (incomeTaxRequest.PayFrequency)
         {
             case PayFrequency.Weekly:
-                payPacket = netIncome / DateConstants.WeeksPerYear;
+                payPacket = (netIncome / DateConstants.WeeksPerYear).RoundToCent();
                 break;
 
             case PayFrequency.Fortnightly:
-                payPacket = netIncome / DateConstants.FortnightsPerYear;
+                payPacket = (netIncome / DateConstants.FortnightsPerYear).RoundToCent();
                 break;
 
             case PayFrequency.Monthly:
-                payPacket = netIncome / DateConstants.MonthsPerYear;
+                payPacket = (netIncome / DateConstants.MonthsPerYear).RoundToCent();
                 break;
         }
 
@@ -75,7 +81,7 @@ public class IncomeQuery
             medicareLevy,
             budgetRepairLevy != decimal.Zero,
             budgetRepairLevy,
-            incomeTaxRequest.Income,
+            incomeTaxRequest.TotalPackageIncome,
             taxableSalary,
             superContribution,
             incomeTax,

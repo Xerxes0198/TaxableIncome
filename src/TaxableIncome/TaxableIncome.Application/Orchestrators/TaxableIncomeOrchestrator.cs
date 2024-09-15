@@ -28,23 +28,23 @@ public class TaxableIncomeOrchestrator
     }
 
     /// <summary>
-    /// Instructs the orchestrator to execute a run for the year 2024.
+    /// Instructs the orchestrator to execute a run for the year 2018.
     /// </summary>
-    public void Execute2024Run()
+    public void Execute2018Run()
     {
-        FinancialYear2024InputModel financialYear2024InputModel;
+        FinancialYear2018InputModel financialYear2018InputModel;
 
         // Get input and validate it.
         do
         {
-            financialYear2024InputModel = this.inputCollector.Get2024Inputs();
+            financialYear2018InputModel = this.inputCollector.Get2018Inputs();
         }
-        while (!this.inputValidator.ValidateInputModel(financialYear2024InputModel));
+        while (!this.inputValidator.ValidateInputModel(financialYear2018InputModel));
 
         // At this point we know have valid input.
 
         // Assemble request.
-        var request = new IncomeQueryRequest(financialYear2024InputModel.ValidatedIncome, financialYear2024InputModel.ValidatedPayFrequency);
+        var request = new IncomeQueryRequest(financialYear2018InputModel.ValidatedIncome, financialYear2018InputModel.ValidatedPayFrequency);
 
         // Send request to command.
         var response = this.incomeQuery.Execute(request);

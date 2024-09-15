@@ -61,6 +61,6 @@ public class IncomeTaxCalculator
             currentMinTaxAmount = (decimal)this.incomeTaxTable.Rows[this.incomeTaxTable.Rows.Count - 1]["MinTaxAmount"];
         }
 
-        return decimal.Round(currentMinTaxAmount + (income - currentExcess) * currentTaxPercentage);
+        return decimal.Round(currentMinTaxAmount + ((income - currentExcess) * currentTaxPercentage));
     }
 }
